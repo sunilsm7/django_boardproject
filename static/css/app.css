@@ -1,4 +1,19 @@
+.navbar {
+  background-color: #2F4F4F	;
+}
+
+.navbar > a {
+  color:#D3D3D3	;
+}
 
 .navbar-brand {
   font-family: 'Peralta', cursive;
+}
+.border-dark{
+	border-color: grey;
+
+}
+.border-dark > .card-header{
+		background-color: grey;
+		color: white;
 }
