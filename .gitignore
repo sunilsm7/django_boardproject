@@ -4,6 +4,9 @@ __pycache__/
 *$py.class
 *.pyc
 
+# ignore env
+.env
+
 # C extensions
 *.so
 
@@ -100,3 +103,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# SQLite database files
+
+*.sqlite3

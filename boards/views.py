@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, UpdateView
@@ -116,6 +116,21 @@ class BoardListView(ListView):
 	model = Board
 	context_object_name = 'boards'
 	template_name = 'home.html'
+
+
+class SearchResults(ListView):
+	model = Topic
+	context_object_name = 'topics_results'
+	template_name = 'search_results.html'
+	paginate_by = 20
+
+	def get_queryset(self):
+		if 'q' in self.request.GET:
+			query = self.request.GET.get('q')
+			queryset = Topic.objects.filter(
+				Q(subject__icontains=query)
+				)
+			return queryset
 
 
 class TopicListView(ListView):
